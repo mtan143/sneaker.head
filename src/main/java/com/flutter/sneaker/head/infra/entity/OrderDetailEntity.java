@@ -20,8 +20,14 @@ public class OrderDetailEntity {
     @Column(name = "product_id")
     private String productId;
 
+    @Column(name = "product_size_id")
+    private String productSizeId;
+
     @Column(name = "quantity")
     private Integer quantity;
+
+    @Column(name = "price")
+    private double price;
 
     @Column(name = "created_date")
     private LocalDateTime createdDate;

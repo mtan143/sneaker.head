@@ -16,14 +16,11 @@ public class OrderEntity {
     @Column(name = "order_id")
     private String orderId;
 
-    @Column(name = "order_detail_id")
-    private String orderDetailId;
-
     @Column(name = "account_number")
     private String accountNumber;
 
-    @Column(name = "total")
-    private Integer total;
+    @Column(name = "total_price")
+    private double totalPrice;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
