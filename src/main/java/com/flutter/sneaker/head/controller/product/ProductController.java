@@ -31,4 +31,9 @@ public class ProductController {
                                              @RequestParam Integer pageSize) {
         return productService.findAll(pageNo, pageSize);
     }
+
+    @PostMapping
+    public ProductResponse upsert(@RequestBody ProductRequest productRequest) {
+        return productService.upsertProduct(productRequest);
+    }
 }

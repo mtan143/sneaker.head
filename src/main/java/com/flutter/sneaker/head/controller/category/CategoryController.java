@@ -23,4 +23,9 @@ public class CategoryController {
     public CategoryResponse findByCategoryId(@PathVariable String categoryId) {
         return categoryService.findByCategoryId(categoryId);
     }
+
+    @PostMapping
+    public CategoryResponse upsert(@RequestBody CategoryRequest categoryRequest) {
+        return categoryService.upsert(categoryRequest);
+    }
 }

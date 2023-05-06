@@ -1,5 +1,6 @@
 package com.flutter.sneaker.head.service.category;
 
+import com.flutter.sneaker.head.controller.category.CategoryRequest;
 import com.flutter.sneaker.head.controller.category.CategoryResponse;
 import com.flutter.sneaker.head.infra.entity.CategoryEntity;
 import com.flutter.sneaker.head.infra.exception.DomainErrorCode;
@@ -9,7 +10,10 @@ import com.flutter.sneaker.head.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,5 +43,29 @@ public class CategoryServiceImpl implements CategoryService{
         CategoryResponse categoryResponse = CategoryResponse.fromEntity(categoryEntity);
         categoryResponse.setTotalProduct(productService.countByCategoryId(categoryEntity.getCategoryId()));
         return categoryResponse;
+    }
+
+    @Override
+    public CategoryResponse upsert(CategoryRequest categoryRequest) {
+        CategoryEntity categoryEntity = categoryRepository.findByCategoryId(categoryRequest.getCategoryId())
+                .orElse(new CategoryEntity());
+
+        if (Objects.isNull(categoryEntity.getCategoryId())) {
+            categoryEntity.setCategoryId(UUID.randomUUID().toString());
+            categoryEntity.setCategoryName(categoryRequest.getCategoryName());
+            categoryEntity.setQuantityProduct(categoryRequest.getTotalProduct());
+            categoryEntity.setCreatedDate(LocalDateTime.now());
+        } else {
+            categoryEntity.setCategoryName(categoryRequest.getCategoryName());
+            categoryEntity.setQuantityProduct(categoryRequest.getTotalProduct());
+        }
+        categoryEntity.setLastModifiedDate(LocalDateTime.now());
+
+        return CategoryResponse.fromEntity(categoryRepository.save(categoryEntity));
+    }
+
+    @Override
+    public CategoryResponse toggleCategory(CategoryRequest categoryRequest) {
+        return null;
     }
 }

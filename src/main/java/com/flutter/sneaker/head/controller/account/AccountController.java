@@ -18,4 +18,9 @@ public class AccountController {
     public List<AccountResponse> getAllAccount() {
         return accountService.getAll();
     }
+
+    @PostMapping
+    public AccountResponse upsert(@RequestBody AccountRequest accountRequest) {
+        return accountService.updateAccount(accountRequest);
+    }
 }

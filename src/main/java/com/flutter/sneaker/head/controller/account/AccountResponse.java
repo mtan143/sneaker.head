@@ -16,6 +16,7 @@ public class AccountResponse {
     private String accountNumber;
     private String cellphone;
     private String address;
+    private String email;
     private AccountStatus status;
     private String roleId;
     private LocalDateTime createdDate;
@@ -29,6 +30,7 @@ public class AccountResponse {
                 .address(accountEntity.getAddress())
                 .status(accountEntity.getStatus())
                 .roleId(accountEntity.getRoleId())
+                .email(accountEntity.getEmail())
                 .createdDate(accountEntity.getCreatedDate())
                 .build();
     }

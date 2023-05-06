@@ -1,6 +1,7 @@
 package com.flutter.sneaker.head.infra.entity;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "category")
 @Getter
+@Setter
 public class CategoryEntity {
 
     @Id
@@ -19,6 +21,9 @@ public class CategoryEntity {
 
     @Column(name = "category_name")
     private String categoryName;
+
+    @Column(name = "available_quantity_product")
+    private int quantityProduct;
 
     @Column(name = "created_date")
     private LocalDateTime createdDate;
