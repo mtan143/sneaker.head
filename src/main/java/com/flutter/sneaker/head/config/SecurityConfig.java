@@ -45,10 +45,18 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
-                .authorizeHttpRequests((authorize) ->
-                        authorize
-                        .anyRequest().permitAll()
-                );
+                .authorizeHttpRequests()
+                .antMatchers("/**")
+                .permitAll()
+                .and()
+                .anonymous()
+                .authorities("ROLE_ANONYMOUS");
+
+        http.csrf().disable()
+                .logout(logout -> logout
+                        .logoutUrl("/api/auth/signOut")
+                        .logoutSuccessUrl("/"));
+
         http.authenticationProvider(authenticationProvider());
         return http.build();
     }

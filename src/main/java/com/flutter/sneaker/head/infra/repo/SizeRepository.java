@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface SizeRepository extends JpaRepository<SizeEntity, Long> {
 
     Optional<SizeEntity> findBySizeId(String sizeId);
+    Optional<SizeEntity> findBySize(Integer size);
 }

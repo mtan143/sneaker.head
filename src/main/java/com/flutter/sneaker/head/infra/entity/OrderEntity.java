@@ -1,12 +1,20 @@
 package com.flutter.sneaker.head.infra.entity;
 
 import com.flutter.sneaker.head.infra.enumeration.OrderStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "order")
+@Table(name = "purchase_order")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderEntity {
 
     @Id
@@ -18,6 +26,18 @@ public class OrderEntity {
 
     @Column(name = "account_number")
     private String accountNumber;
+
+    @Column(name = "customer_name")
+    private String customerName;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "cellphone")
+    private String cellphone;
 
     @Column(name = "total_price")
     private double totalPrice;
