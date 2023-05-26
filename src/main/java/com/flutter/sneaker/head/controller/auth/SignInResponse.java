@@ -10,4 +10,5 @@ public class SignInResponse {
 
     private String message;
     private HttpStatus status;
+    private String accountNumber;
 }

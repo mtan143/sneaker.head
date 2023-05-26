@@ -16,4 +16,6 @@ public interface AccountService {
     AccountResponse toggleAccount(AccountRequest accountRequest);
 
     AccountEntity findByAccountNumber(String accountNumber);
+
+    AccountEntity getProfileInformation(String accountNumber);
 }

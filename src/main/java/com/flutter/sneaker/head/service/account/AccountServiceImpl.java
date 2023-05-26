@@ -61,4 +61,10 @@ public class AccountServiceImpl implements AccountService{
         return accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new DomainException(DomainErrorCode.ACCOUNT_NOT_FOUND));
     }
+
+    @Override
+    public AccountEntity getProfileInformation(String accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber)
+                .orElseThrow(() -> new DomainException(DomainErrorCode.ACCOUNT_NOT_FOUND));
+    }
 }

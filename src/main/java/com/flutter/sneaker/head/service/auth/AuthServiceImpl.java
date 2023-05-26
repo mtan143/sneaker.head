@@ -48,9 +48,13 @@ public class AuthServiceImpl implements AuthService{
         } catch (Exception exception) {
             throw new DomainException(DomainErrorCode.SIGN_IN_ERROR);
         }
+        AccountEntity accountEntity = accountRepository.findByUserNameOrEmail(signInRequest.getUsernameOrEmail(),
+                signInRequest.getUsernameOrEmail())
+                .orElseThrow(() -> new DomainException(DomainErrorCode.SIGN_IN_ERROR));
         return SignInResponse.builder()
                 .message("User logged in successfully!")
                 .status(HttpStatus.OK)
+                .accountNumber(accountEntity.getAccountNumber())
                 .build();
     }
 
